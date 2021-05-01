@@ -5,13 +5,16 @@ import {
 
 const Item = ({ title }) => (
 
-  <View style={styles.item}>
-    <TouchableOpacity>
+  <TouchableOpacity>
+    <View style={styles.item}>
       <Text>
         SASD
       </Text>
-    </TouchableOpacity>
-  </View>
+      <Text>
+        SASD
+      </Text>
+    </View>
+  </TouchableOpacity>
 )
 
 const styles = StyleSheet.create({
@@ -21,7 +24,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 5,
     width: '30%',
-    height: '40%'
+    height: '80%'
   }
 })
 
