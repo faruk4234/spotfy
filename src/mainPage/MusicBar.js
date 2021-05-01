@@ -1,8 +1,9 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, FlatList
+  View, Text, StyleSheet, FlatList, TouchableOpacity
 } from 'react-native'
-import MusicItem from './component/MusicItem'
+import { Avatar } from 'react-native-paper'
+import Searchbar from './component/Searchbar'
 
 const DATA = [
   {
@@ -82,13 +83,38 @@ const DATA = [
 
 const MusicBar = () => {
 
+  const Item = () => (
+
+    <TouchableOpacity>
+      <View style={styles.item}>
+        <Text>
+          SASD
+        </Text>
+        <Text>
+          SASD
+        </Text>
+      </View>
+    </TouchableOpacity>
+  )
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Music')}
+        style={styles.opacityContainer}
+      >
+        <Avatar.Icon
+          style={styles.avatarIcon}
+          size={42}
+          icon="music"
+        />
+      </TouchableOpacity>
+      <Searchbar />
+
       <FlatList
-        numColumns={3}
         contentContainerStyle={styles.flatList}
         data={DATA}
-        renderItem={MusicItem}
+        renderItem={Item}
         keyExtractor={(item) => item.id}
       />
     </View>
@@ -97,13 +123,22 @@ const MusicBar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'aqua',
+    paddingTop: 50,
+    marginHorizontal: 20,
+    top: '20%',
+    backgroundColor: 'white',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
   },
   flatList: {
     flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  item: {
+    backgroundColor: 'purple',
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 12,
   }
 })
 

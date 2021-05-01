@@ -20,9 +20,9 @@ const Searchbars = ({ searchQuery, setSearchQuery }) => (
 
 const styles = StyleSheet.create({
   input: {
-    flex: 1,
     height: 45,
     margin: 10,
+    zIndex: 2,
     paddingRight: 20,
     borderWidth: 0.6,
     borderRadius: 25,
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 
     elevation: 1,
   },
+
 })
 
 export default Searchbars

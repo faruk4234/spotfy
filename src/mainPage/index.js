@@ -1,67 +1,53 @@
-import React from 'react'
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet
-} from 'react-native'
-
-import { Avatar } from 'react-native-paper'
-import Searchbar from './component/Searchbar'
+import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import MainPage from './MainPage'
 import MusicBar from './MusicBar'
 
-const index = () => {
-  const [musicButton, setMusicButton] = React.useState(false)
+const Stack = createStackNavigator()
 
-  const [searchQuery, setSearchQuery] = React.useState('')
-
+function index() {
   return (
-    <View style={styles.container}>
-      <View style={styles.childContainer}>
+    <NavigationContainer>
 
-        <TouchableOpacity
-          onPress={() => setMusicButton(!musicButton)}
-          style={styles.opacityContainer}
-        >
-          <Avatar.Icon
-            style={styles.avatarIcon}
-            size={42}
-            icon="music"
-          />
-        </TouchableOpacity>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          cardStyle: { backgroundColor: 'transparent' },
+          cardOverlayEnabled: true,
+          cardStyleInterpolator: ({ current: { progress } }) => ({
+            cardStyle: {
+              opacity: progress.interpolate({
+                inputRange: [0, 0.5, 0.9, 1],
+                outputRange: [0, 0.25, 0.7, 1],
+              }),
+            },
+            overlayStyle: {
+              opacity: progress.interpolate({
+                inputRange: [0, 0.1],
+                outputRange: [0, 0.15],
+                extrapolate: 'clamp',
+              }),
+            },
+          }),
+        }}
+      >
 
-        <Searchbar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Home"
+          component={MainPage}
         />
-      </View>
-      {musicButton
-        ? <MusicBar /> : null}
 
-    </View>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Music"
+          component={MusicBar}
+        />
 
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  childContainer: {
-    alignItems: 'flex-end',
-    flex: 3,
-    backgroundColor: 'white',
-    flexDirection: 'row'
-  },
-  avatarIcon: {
-    backgroundColor: 'green'
-
-  },
-  opacityContainer: {
-    alignItems: 'flex-end',
-    marginBottom: 11,
-    paddingLeft: 5,
-    opacity: 1
-  }
-})
 
 export default index
