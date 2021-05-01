@@ -5,70 +5,62 @@ import {
   StyleSheet
 } from 'react-native'
 
-import { IconButton, Searchbar, Avatar } from 'react-native-paper'
-
-const [musicButton, setMusicButton] = React.useState(false)
+import { Avatar } from 'react-native-paper'
+import Searchbar from './component/Searchbar'
+import MusicBar from './MusicBar'
 
 const index = () => {
+  const [musicButton, setMusicButton] = React.useState(false)
+
   const [searchQuery, setSearchQuery] = React.useState('')
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.opacityContainer}
-      >
-        <Avatar.Icon
-          style={styles.avatarIcon}
-          size={46}
-          icon="music"
-        />
+      <View style={styles.childContainer}>
 
-      </TouchableOpacity>
-      <Searchbar
-        iconColor="blue"
-        theme="green"
-        clearIcon
-        style={styles.input}
-        placeholder="Text Message"
-        onChangeText={setSearchQuery}
-        value={searchQuery}
-      />
+        <TouchableOpacity
+          onPress={() => setMusicButton(!musicButton)}
+          style={styles.opacityContainer}
+        >
+          <Avatar.Icon
+            style={styles.avatarIcon}
+            size={42}
+            icon="music"
+          />
+        </TouchableOpacity>
+
+        <Searchbar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+      </View>
+      {musicButton
+        ? <MusicBar /> : null}
+
     </View>
+
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    top: musicButton ? 400 : 0,
+    flex: 1
+  },
+  childContainer: {
     alignItems: 'flex-end',
-    flex: 1,
+    flex: 3,
     backgroundColor: 'white',
     flexDirection: 'row'
   },
-  input: {
-    flex: 1,
-    height: 50,
-    margin: 10,
-    paddingRight: 20,
-    borderWidth: 0.6,
-    borderRadius: 25,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.18,
-    shadowRadius: 1.00,
-
-    elevation: 1,
-  },
   avatarIcon: {
     backgroundColor: 'green'
+
   },
   opacityContainer: {
     alignItems: 'flex-end',
     marginBottom: 11,
-    paddingLeft: 5
+    paddingLeft: 5,
+    opacity: 1
   }
 })
 
