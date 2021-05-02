@@ -11,6 +11,7 @@ function index() {
     <NavigationContainer>
 
       <Stack.Navigator
+        headerMode="float"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'transparent' },
@@ -46,6 +47,7 @@ function index() {
         />
 
       </Stack.Navigator>
+
     </NavigationContainer>
   )
 }

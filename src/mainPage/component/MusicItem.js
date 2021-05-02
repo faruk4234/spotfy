@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, TouchableOpacity, TextInput
+  View, Text, StyleSheet, TouchableOpacity
 } from 'react-native'
 
-const Item = ({ title }) => (
+const Item = () => (
 
   <TouchableOpacity>
     <View style={styles.item}>

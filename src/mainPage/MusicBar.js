@@ -2,7 +2,6 @@ import React from 'react'
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity
 } from 'react-native'
-import { Avatar } from 'react-native-paper'
 import Searchbar from './component/Searchbar'
 
 const DATA = [
@@ -81,7 +80,7 @@ const DATA = [
 
 ]
 
-const MusicBar = () => {
+const MusicBar = ({ navigation }) => {
 
   const Item = () => (
 
@@ -100,14 +99,10 @@ const MusicBar = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Music')}
+        onPress={() => navigation.navigate('Home')}
         style={styles.opacityContainer}
       >
-        <Avatar.Icon
-          style={styles.avatarIcon}
-          size={42}
-          icon="music"
-        />
+        <Text style={styles.textStyle}>Vazgeç</Text>
       </TouchableOpacity>
       <Searchbar />
 
@@ -128,7 +123,7 @@ const styles = StyleSheet.create({
     top: '20%',
     backgroundColor: 'white',
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'flex-start',
   },
   flatList: {
     flexDirection: 'column',
@@ -139,6 +134,19 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 5,
     marginHorizontal: 12,
+  },
+  opacityContainer: {
+    backgroundColor: 'red',
+    marginHorizontal: 50,
+    borderRadius: 40,
+    paddingVertical: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  textStyle: {
+    fontSize: 20,
+    color: 'white'
   }
 })
 
