@@ -14,6 +14,8 @@ target 'Spotfy' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNEventEmitter', :path => '../node_modules/react-native-events'
+
   target 'SpotfyTests' do
     inherit! :complete
     # Pods for testing
